@@ -1,0 +1,200 @@
+//This program is an attempt the popular casino game of roulette
+#include <iostream>
+#include <cstdlib>
+#include <ctime> 
+#include <string>
+#include <limits>
+
+using namespace std; 
+
+int main()
+{	//Basic Title Screen 
+	cout << "===========================" << endl; 
+	cout << "C++ Roulette by Jacob Onda" << endl; 
+	cout << "===========================" << endl; 
+
+	//Declaration of Varibales
+	double bankAmount = 0; 
+	char playStyle = 0; 
+	bool numInput = false; //Valid input for bank 
+	bool playSelect = false; //Valid input for playstyle 
+	bool restart = false; //Restarts game
+	srand(time(NULL)); //sets seed value and initalizes randomizer
+	int yourRandomNumber = 0;  //random number chosen by player
+	int spinRandomNumber = 0; //random number for the 'spin'
+	int crn = 0; //Random number for the color 'spin' (stands for color random number)
+	int waitLoop = 0; //delays text 
+	double gambleMoney = 0; //Money gambeled
+	double winMoney = 0; //Money Won
+	string color; //Choice of color in string
+	bool colorSelect = false; //Valid Input Check for color
+	bool winColor = false; //Winner for color
+	int end = 0; //keeps program open until character entered in exe
+	
+
+	//Inital Text and Bank Input
+	cout << "Input Bank Amount: ";  
+
+	while (numInput == false) //Loop function for valid input for bank
+	{
+		cin >> bankAmount;
+		cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // two aove functions ignore chararacter input
+		
+		if (bankAmount > 0) // stops look function and continues program 
+		{	cout << "\n";
+			numInput = true;
+		}
+	}
+
+	while (bankAmount > 0) // keeps the game going as long as the player has money 
+	{
+		
+		//Player choses how they want to play
+		cout << "Your Bank Amount is: " << "$" << bankAmount << endl;
+		cout << "\n";
+		cout << "How would you like to play???" << endl;
+		cout << "A: Pick a Number (35/1 payout with 2.7% chance of winning) " << endl;
+		cout << "B: Pick a Color (1/1 payout with a 48.6% chance of winning) " << endl;
+		cout << "\n"; 
+		
+		while (playSelect == false) //checks to see if input is valid through a loop
+		{
+			cin >> playStyle;
+			if (playStyle == 'a' || playStyle == 'A' || playStyle == 'b' || playStyle == 'B')
+			{
+				playSelect = true;
+			}
+		}
+
+		
+		
+
+		if (playStyle == 'a' || playStyle == 'A') //runs program A
+		{
+			playSelect = false;
+			playStyle = 0; 
+			 
+			//Wager Statement
+			cout << endl; 
+			cout << "How Much Would You Like to gamble? ";
+			cin >> gambleMoney; 
+			cout << "\n"; 
+			bankAmount = bankAmount - gambleMoney; 
+			cout << "Your bank now consists of: $" << bankAmount << "\n" << "\n" << "\n";
+
+			
+			//Pick Number from list
+			cout << "Pick a Number Selected:" << endl;
+			cout << "\n" << "Pick a number 0-37" << "\n" << endl; 
+			cin >> yourRandomNumber; 
+			spinRandomNumber = rand() % 38; 
+			//spinRandomNumber = 6; //Insert to test win number six
+			cout << "\n";
+			
+			cout << "The Number was " << spinRandomNumber << "\n" << endl;  //reveals number
+		
+			if (yourRandomNumber == spinRandomNumber)
+			{
+				winMoney = (gambleMoney + (gambleMoney * 35)); 
+				cout << "Jackpot! Congrats You Just Won! $" << (gambleMoney + (gambleMoney * 35));
+				bankAmount = bankAmount + winMoney; 
+			}
+			
+			
+			cout << "\n" << "\n"; //needed for spacing in between 
+			
+		}
+		if (playStyle == 'b' || playStyle == 'B') // runs Program B
+		{
+			playSelect = false;
+			playStyle = 0;
+			
+
+			cout << endl; 
+			cout << "Pick a Color Selected";
+
+			//Wager Statement
+			cout << endl;
+			cout << "How Much Would You Like to gamble? ";
+			cin >> gambleMoney;
+			cout << "\n"; 
+			bankAmount = (bankAmount - gambleMoney); 
+			cout << "Your bank now consists of: $" << bankAmount << "\n" << "\n" << "\n";
+
+			cout << "Type a color 'red' (odd) or 'black' (even)" << "\n";
+			cout << "(Note: The GREEN ZERO spot does not count towards a color) " << "\n" << endl;
+
+			while (colorSelect == false) //Checking inputs match proper temonology
+			{
+				cin >> color; 
+					if (color == "red" || color == "black")
+					{
+						colorSelect = true; 
+
+					}
+			
+			}
+				colorSelect = false; //resets value 
+			
+				//Color function for wheel
+				crn = rand() % 37; 
+				//crn = 0;  //Tests different values!
+				cout << "\n"; 
+
+			//RED NUMBERS (EVEN)
+				if (crn == 2 || crn == 4 || crn == 6 || crn == 8 || crn == 10 || crn == 12 || crn == 14 ||
+					crn == 16 || crn == 18 || crn == 20 || crn == 22 || crn == 24 || crn == 26 ||
+					crn == 28 || crn == 30 || crn == 32 || crn == 34 || crn == 36)
+				{
+					cout << "The Color was RED"; 
+					if (color == "red")
+					{
+						winColor = true; 
+					}
+						}
+
+				//Black NUMBERS (ODD)
+				if (crn == 1 || crn == 3 || crn == 5 || crn == 7 || crn == 9 || crn == 11 || crn == 13 ||
+					crn == 15 || crn == 17 || crn == 19 || crn == 21 || crn == 23 || crn == 25 ||
+					crn == 27 || crn == 29 || crn == 31 || crn == 33 || crn == 35)
+				{
+					cout << "The Color was BLACK" << endl; 
+					if (color == "black")
+					{ 
+						winColor = true; 
+
+					}
+				}
+
+				//GREEN ZERO 
+				if (crn == 0)
+				{
+					cout << "The Color was GREEN (zero space)";
+				}
+
+				if (winColor == true)
+				{ 
+					winColor = false; 
+					cout << "\n" << "\n" << "Winner Winner Chicken Dinner!" << endl; 
+					winMoney = (gambleMoney * 2);
+					bankAmount = bankAmount + winMoney; 
+					cout << "\n" << "You won! $" << winMoney;
+
+
+				}
+
+				
+
+			
+
+			cout << "\n" << "\n"; //need for spacing
+		}
+	}
+	cout << "Better luck next time. Appreciate your buisness!"; 
+	cin >> end; 
+	
+
+	cout << "\n"; 
+	return 0;
+}
