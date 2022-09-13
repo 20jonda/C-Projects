@@ -1,0 +1,61 @@
+// This calculator was made to calculate simple whole number 3x3 matrix functions. It is especially useful for calculation using the 'triple scalar product' for volume
+//of a parallelepiped by doing a.(bxc) [dot product and cross product combination.
+
+#include <iostream>
+
+using namespace std; 
+
+
+//Variable Declerations
+int a1 = 0, a2 = 0, a3 = 0, b1 = 0, b2 = 0, b3 = 0, c1 = 0, c2 = 0, c3 = 0;
+int answer = 0; 
+int main()
+{
+	cout << "Matrix Calculator" << endl; //Standard ;intro'
+
+	cout << "| a1  a2  a3 |" << endl; //Reference matrix for inputs
+	cout << "| b1  b2  b3 |" << endl;
+	cout << "| c1  c2  c3 |" << endl;
+	cout << endl;
+	
+	
+
+	cout << "Input a1: ";
+	cin >> a1; 
+
+	cout << "Input a2: ";
+	cin >> a2;
+
+	cout << "Input a3: ";
+	cin >> a3;
+	cout << endl; 
+
+	cout << "Input b1: ";
+	cin >> b1;
+
+	cout << "Input b2: ";
+	cin >> b2;
+
+	cout << "Input b3: ";
+	cin >> b3;
+	cout << endl;
+
+	cout << "Input c1: ";
+	cin >> c1;
+
+	cout << "Input c2: ";
+	cin >> c2;
+
+	cout << "Input c3: ";
+	cin >> c3;
+	cout << endl;
+
+	answer = (a1 * ((b2 * c3) - (b3 * c2))) + (a2 * ((b3 * c1) - (b1 * c3))) + (a3 * ((b1 * c2) - (b2 * c1)));
+	cout << "Equals " << answer; 
+
+
+
+
+	cout << endl; 
+	return 0;
+}
