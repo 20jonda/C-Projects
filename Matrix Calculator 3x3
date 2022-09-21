@@ -1,6 +1,8 @@
 // This calculator was made to calculate simple whole number 3x3 matrix functions. It is especially useful for calculation using the 'triple scalar product' for volume
 //of a parallelepiped by doing a.(bxc) [dot product and cross product combination.
 
+//Made by Jacob Onda. Subject to free use without claiming ownership
+
 #include <iostream>
 
 using namespace std; 
