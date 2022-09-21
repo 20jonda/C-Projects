@@ -1,0 +1,136 @@
+/*Program made for class assignment that measures speed of sound through a medium with predefined values of m/s. Mediums include Carbon Dioxide, Oxygen,
+Helium, and Hydrogen */
+
+//All source code was designed by Jacob Onda and is subject to free use without claiming as own
+
+#include <iostream>
+
+using namespace std;
+
+//Variable Declerations and Initializations
+
+const double carbonDioxide = 258.0, air = 331.5, helium = 972.0, hydrogen = 1270.0;
+//Set mediums to a constant so that their values don't change
+double menuSelection = 0; // Menu selection and calculation for time
+double meters = 0, timeSound = 0; //Variables used for calculation of meters
+
+
+int main()
+{
+	//Welcome Message
+	cout << "Time from Sound Traveling Through Medium" << endl;
+	cout << "-------------------------------------------------" << endl; 
+	cout << endl; 
+
+	//Menu to select desired medium
+	cout << "Select Desired Medium" << endl; 
+	cout << endl; 
+	cout << "1) Carbon Dioxide (258.0 Meters Per Second)" << endl;
+	cout << "2) Air (331.5 Meters Per Second)" << endl;
+	cout << "3) Helium (972.0 Meters Per Second)" << endl;
+	cout << "4) Hydrogen (1,270.0 Meters Per Second)" << endl;
+	cout << endl; 
+
+	//Enter selection prompt (if/then statement at bottom that checks valid input)
+	cout << "Enter Selection: "; 
+	cin >> menuSelection; 
+
+	if (menuSelection == 1) // Carbon Dioxide Menu and input
+	{
+		cout << endl;
+		cout << "Carbon Dioxide Selected" << endl;
+		cout << endl; 
+		cout << "Enter time in seconds (0-30) from source to location detected: "; 
+		cin >> timeSound;
+
+		// Nested if statement to check time range 0-30 seconds
+		if (timeSound < 0 || timeSound > 30)
+		{
+			cout << "\n" << "Invalid Input" << endl;
+			return 0;
+		}
+		else 
+		{
+			meters = carbonDioxide * timeSound;
+			cout << "\n" << "The source of the sound was from " << meters << " Meters away";
+		}
+
+			 
+	}
+
+	else if (menuSelection == 2) //Air Menu and input 
+	{
+		cout << endl;
+		cout << "Air Selected" << endl;
+		cout << endl; 
+		cout << "Enter time in seconds (0-30) from source to location detected: ";
+		cin >> timeSound;
+
+		// Nested if statement (If time not valid terminate program)
+		if (timeSound < 0 || timeSound > 30)
+		{
+			cout << "\n" << "Invalid Input" << endl;
+			return 0;
+		}
+		else //else do calculation
+		{
+			meters = air * timeSound;
+			cout << "\n" << "The source of the sound was from " << meters << " Meters away";
+		}
+
+	}
+
+	else if (menuSelection == 3) //Helium Menu and input
+	{
+		cout << endl;
+		cout << "Helium Selected" << endl;
+		cout << endl;
+		cout << "Enter time in seconds (0-30) from source to location detected: ";
+		cin >> timeSound;
+
+		// Nested if statement (If time not valid terminate program)
+		if (timeSound < 0 || timeSound > 30)
+		{
+			cout << "\n" << "Invalid Input" << endl;
+			return 0;
+		}
+		else //else do calculation
+		{
+			meters = helium * timeSound;
+			cout << "\n" << "The source of the sound was from " << meters << " Meters away";
+		}
+	}
+
+	else if (menuSelection == 4) //Hydrogen Menu and input
+	{
+		cout << endl;
+		cout << "Hydrogen Selected" << endl;
+		cout << endl;
+		cout << "Enter time in seconds (0-30) from source to location detected:  ";
+		cin >> timeSound;
+
+		// Nested if statement (If time not valid terminate program)
+		if (timeSound < 0 || timeSound > 30)
+		{
+			cout << "\n" << "Invalid Input" << endl;
+			return 0;
+		}
+		else //else do calculation
+		{
+			meters = hydrogen * timeSound;
+			cout << "\n" << "The source of the sound was from " << meters << " Meters away";
+		}
+
+	}
+
+	// This checks for valid menu input and terminates program if incorrect 
+	else if (menuSelection != 1 && menuSelection != 2 && menuSelection != 3 && menuSelection != 4)
+	{
+		cout << endl; 
+		cout << "Invalid Input" << endl;
+		return 0; 
+	}
+
+	cout << endl; 
+	return 0; 
+}
