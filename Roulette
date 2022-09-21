@@ -1,4 +1,6 @@
 //This program is an attempt the popular casino game of roulette
+//Made by Jacob Onda and is subject to free use without the claiming of ownership.
+
 #include <iostream>
 #include <cstdlib>
 #include <ctime> 
