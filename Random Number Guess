@@ -1,0 +1,85 @@
+//This program is a "game" in which the user will guess 1-100. The program will display number of tries and also if the user wants to play again
+//multiple applications applied in this project.
+//Made by Jacob Onda and is subject to free use without violation of ownership
+
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+
+using namespace std; 
+
+int main()
+{
+	int rng = 0; //random number generator variable
+	int guess = 0; //variable for user input for guess
+	int select = 0; //This will determine if the user wants to end the program or continue
+	int acc = 0; //accumulator for guesses counted in total
+	bool loop = true; // ends the program
+
+
+	for (int i = 0; i < 31; i++)					
+		cout << "-";									//Menu Display
+	cout << "\nRandom Number Guess Jacob Onda\n";
+	for (int i = 0; i < 31; i++)
+		cout << "-";															// these two segments of code will never run inside/outside of the loop itself
+	rng = rand() % 101 + 1;
+
+	srand(time(NULL));		//random variable function
+	cout << "\nEnter Guess (1-100): ";
+	cin >> guess;
+
+	do										//There are 4 cases here!
+	{
+	
+		while (guess < rng)					//1: guess is too low
+		{
+			acc++; //add one to the accumulator
+			cout << "\nToo LOW Try again: ";
+			cin >> guess;
+		}
+		while (guess > rng)					//2: guess is too high
+		{
+			acc++; //add one to the accumulator
+			cout << "\nToo HIGH Try again: ";
+			cin >> guess;
+		}
+		while (guess == rng)				//3: guess is equal to the number
+		{
+			cout << "\nCorrect!!!\n";
+			acc++; //add one to the accumulator
+			cout << "\nIt took you " << acc << " tries ..." << endl; // Displays the number of tries the user took to guess 
+			cout << "\nWould you like to play again? 0 to end, any other value to continue: ";	//Ask user if he/she wants to play again
+			cin >> select;
+
+			switch (select)		//using a switch statement to break the loop or continue on
+			{
+			case 0:
+				system("CLS");			//case 0 will end the program on input of "0"
+				loop = false;
+				cout << "Goodbye";
+				break;
+			default: //Default will reset the program and user will enter from the bottom of it
+				system("CLS");
+				cout << "Play again selected... \n";
+				acc = 0; //resets accumulator on replay
+				rng = rand() % 101 + 1; //sets random number again
+				cout << "\nEnter Guess (1-100): ";
+				cin >> guess;
+			}
+		}
+
+		while (guess < 1 || guess > 100)		//4: input validation is not correct
+		{
+			system("CLS");
+			cout << "Error: Invalid Guess\n\n";
+			cout << "Please Enter accepted value: ";
+			cin >> guess;
+		}
+
+	} while (loop == true); //loop==true will keep the function running as long as menu != 0
+
+
+		cout << endl;
+		return 0;
+	
+}
